@@ -1,0 +1,79 @@
+.calendar{
+    top: 100px;
+    position: relative;
+    width: 1024px;
+    margin: 0 auto;
+}
+
+.calendar-wrapper{
+    position: relative;
+    margin: 0 auto;
+    width: 840px;
+}
+.calendar-date{
+    color: rgba(0, 195, 255, 0.44);
+    text-align: center;
+    font-size: 28px;
+    margin: 20px 0 10px 0;
+}
+
+.calendar-head{
+    position: relative;
+    display: flex;
+    height: 50px;
+    width: 100%;
+}
+
+.calendar-head-cell{
+    position: relative;
+    display: inline-block;
+    width: 140px;
+    border: solid white 1px;
+    background-color: rgba(0, 195, 255, 0.44);
+    color: white;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 50px;
+}
+
+.calendar-table-cell{
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    height: 80px;
+    border: solid lightgrey 1px;
+    background-color: white;
+    color: black;
+    box-sizing: border-box;
+    padding: 10px;  
+}
+
+.calendar-table-cell--next,.calendar-table-cell--prev{
+    background-color: rgba(211, 211, 211, 0.2);
+}
+
+.calendar-table-cell--today{
+    background-color: rgba(0, 195, 255, 0.24); 
+}
+
+.calendar-btn{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius:50%;
+    text-align: center;
+    top: 50%;
+    margin-top: -25px;
+    background-color: rgba(0, 195, 255, 0.44);
+    font-size: 24px;
+    line-height: 50px;
+    color: white;
+}
+
+.calendar-btn--left{
+    left: 0px;
+}
+
+.calendar-btn--right{
+    right: 0px;
+}

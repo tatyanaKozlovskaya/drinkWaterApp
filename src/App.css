@@ -1,0 +1,38 @@
+.App {
+  text-align: left;
+  font-family: sans-serif;
+}
+
+.App-header {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 90px;
+  box-sizing: border-box;
+  background-color: #00C3FF;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 22px;
+  display: block;
+  float: left;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+nav{
+  float: right;
+}
+
+a{
+  color: white;
+  font-size: 20px;
+  display: inline-block;
+  margin-left: 40px;
+  padding: 16px 0px;
+}
+

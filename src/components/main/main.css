@@ -1,0 +1,48 @@
+.main{
+    position: absolute;
+    top: 100px;
+}
+.glass-cont{
+    position: relative;
+    display: inline-block;
+    margin:10px;
+    width:100px;
+    height:100px;
+}
+.water-cont{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width:100px;
+    height:100px;
+    -webkit-mask-image: url('img/glass-mask.png');
+    -webkit-mask-size: 78px;
+    -webkit-mask-position-x:10px;
+    -webkit-mask-repeat: no-repeat;
+}
+.water{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width:100px;
+    height:100px;
+    background: lightblue; 
+    transform-origin: bottom;
+    transition-duration: .5s;
+
+}
+.glass{
+    position: relative;
+    color: grey;
+    width:100px;
+    height:100px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 100px;
+    background: url('img/glass.png') no-repeat 10px 0/contain;
+     
+}
+.glass-cont_empty .water-cont .water{
+   transform: scaleY(0);
+
+}
