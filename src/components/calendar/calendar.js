@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getDate } from './../utils/utils.js';
 import './calendar.css';
 
 const weekdaysNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
@@ -14,7 +13,7 @@ const initState = () => {
     const year = date.getFullYear();
     const currMonthCellsArr = getCurrMonthCellsArr(month, year);
     const prevMonthCellsArr = getPrevMonthCellsArr(month, year);
-    const nextMonthCellsArr = getNextMonthCellsArr(prevMonthCellsArr, currMonthCellsArr);
+    const nextMonthCellsArr = getNextMonthCellsArr(month, year, prevMonthCellsArr, currMonthCellsArr);
 
     return {
         day: day,
@@ -42,7 +41,7 @@ const getCurrMonthCellsArr = (month, year) => {
     const sumDayOfCurrMonth = getSumDayOfMonth(month, year)
     let arr = [];
     for (var i = 1; i <= sumDayOfCurrMonth; i++) {
-        arr.push(i);
+        arr.push(i + '-' + (month + 1) + '-' + year);
     }
     return arr
 }
@@ -55,17 +54,17 @@ const getPrevMonthCellsArr = (month, year) => {
     const sumDayOfPrevMonth = getSumDayOfMonth(month, year)
     let arr = []
     for (var i = 1; i <= sumDayOfPrevMonth; i++) {
-        arr.push(i);
+        arr.push(i + '-' + (month + 1) + '-' + year);
     }
     const newArr = arr.slice(sumDayOfPrevMonth - startWeekDay + 1, sumDayOfPrevMonth)
     return newArr
 }
 
-const getNextMonthCellsArr = (prevMonthCellsArr, currMonthCellsArr) => {
+const getNextMonthCellsArr = (month, year, prevMonthCellsArr, currMonthCellsArr) => {
     const nextMonthCellsArrLength = 42 - (prevMonthCellsArr.length + currMonthCellsArr.length)
     let arr = []
     for (var i = 1; i <= nextMonthCellsArrLength; i++) {
-        arr.push(i);
+        arr.push(i + '-' + (month + 2) + '-' + year);
     }
     return arr
 }
@@ -89,7 +88,7 @@ class Calendar extends Component {
     setNewMonth = (newMonth, newYear) => {
         const newCurrMonthCellsArr = getCurrMonthCellsArr(newMonth, newYear);
         const newPrevMonthCellsArr = getPrevMonthCellsArr(newMonth, newYear);
-        const newNextMonthCellsArr = getNextMonthCellsArr(newPrevMonthCellsArr, newCurrMonthCellsArr);
+        const newNextMonthCellsArr = getNextMonthCellsArr(newMonth, newYear, newPrevMonthCellsArr, newCurrMonthCellsArr);
         this.setState({
             month: newMonth,
             year: newYear,
@@ -110,8 +109,7 @@ class Calendar extends Component {
     render() {
 
         const { day, month, year, prevMonthCellsArr, currMonthCellsArr, nextMonthCellsArr } = this.state
-
-        console.log(this.state)
+        const { data } = this.props
 
         return <div className="calendar" onClick={this.clickHandler}>
             <div className='calendar-wrapper'>
@@ -123,13 +121,34 @@ class Calendar extends Component {
                 </div>
                 <div className='calendar-table'>
                     {prevMonthCellsArr.map((el, index) => {
-                        return <div className='calendar-table-cell calendar-table-cell--prev' key={index}>{el}</div>
+                        return <div className='calendar-table-cell calendar-table-cell--prev' key={index}>
+                            {data[el] && <div className='glass-wrapper'>
+                                {Array.apply(null, Array(data[el].emptyGlasses)).map((el, index) => {
+                                    return <div className='glass glass--little' key={index}></div>
+                                })}
+                            </div>}
+                            <div className='calendar-table-cell_date'>{el.split('-')[0]}</div>
+                        </div>
                     })}
                     {currMonthCellsArr.map((el, index) => {
-                        return <div className={`calendar-table-cell  ${this.isToday(index + 1) ? 'calendar-table-cell--today' : null}`} key={index}>{el}</div>
+                        return <div className={`calendar-table-cell  ${this.isToday(index + 1) ? 'calendar-table-cell--today' : null}`} key={index}>
+                            {data[el] && <div className='glass-wrapper'>
+                                {Array.apply(null, Array(data[el].emptyGlasses)).map((el, index) => {
+                                    return <div className='glass glass--little' key={index}></div>
+                                })}
+                            </div>}
+                            <div className='calendar-table-cell_date'>{el.split('-')[0]}</div>
+                        </div>
                     })}
                     {nextMonthCellsArr.map((el, index) => {
-                        return <div className='calendar-table-cell calendar-table-cell--next' key={index}>{el}</div>
+                        return <div className='calendar-table-cell calendar-table-cell--next' key={index}>
+                            {data[el] && <div className='glass-wrapper'>
+                                {Array.apply(null, Array(data[el].emptyGlasses)).map((el, index) => {
+                                    return <div className='glass glass--little' key={index}></div>
+                                })}
+                            </div>}
+                            <div className='calendar-table-cell_date'>{el.split('-')[0]}</div>
+                        </div>
                     })}
                 </div>
             </div>
@@ -141,7 +160,7 @@ class Calendar extends Component {
 
 export default connect(
     state => ({
-        state: state
+        data: state.main.dataObj
     }),
     dispatch => ({
 

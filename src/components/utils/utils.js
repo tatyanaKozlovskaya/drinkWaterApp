@@ -8,4 +8,14 @@ const getDate = (miliseconds) => {
     return day + ' ' + month + ' ' + year;
 }
 
-export { getDate }
+const getDateForData = (miliseconds) => {
+    console.log(date)
+    if (!miliseconds) return
+    const date = new Date(miliseconds);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return day + '-' + month + '-' + year;
+}
+
+export { getDate, getDateForData }

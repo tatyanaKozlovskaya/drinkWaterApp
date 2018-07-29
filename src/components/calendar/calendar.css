@@ -46,6 +46,38 @@
     color: black;
     box-sizing: border-box;
     padding: 10px;  
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.calendar-table-cell_date{
+    position: absolute;
+    top: 8px;
+    left: 6px;
+    background:rgba(255, 255, 255, 0.5);
+    width: 20px;
+
+}
+
+.glass-wrapper{
+    position: absolute;
+    bottom: 6px;
+    left: 13px;
+    display: flex;
+    width: 91px;
+    height: 45px;
+    flex-wrap: wrap-reverse;
+    align-items: center;
+}
+
+.glass--little{
+    position: relative;
+    display: inline-block;
+    width: 13px;
+    height: 21px;
+    display: inline-block;
+    background: url('img/glass-small.png') 0 0 no-repeat;
+    background-size: contain;
 }
 
 .calendar-table-cell--next,.calendar-table-cell--prev{
@@ -53,7 +85,8 @@
 }
 
 .calendar-table-cell--today{
-    background-color: rgba(0, 195, 255, 0.24); 
+    /* background-color: rgba(0, 195, 255, 0.24);  */
+    border: dashed rgba(0, 195, 255, 0.24) 1px;
 }
 
 .calendar-btn{

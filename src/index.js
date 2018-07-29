@@ -13,6 +13,8 @@ import reducer from './reducers'
 
 import App from './App.js'
 
+
+
 const history = createHistory()
 
 const middleware = routerMiddleware(history)

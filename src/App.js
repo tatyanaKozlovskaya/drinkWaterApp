@@ -5,11 +5,10 @@ import Main from './components/main/main.js'
 import Calendar from './components/calendar/calendar.js'
 import { Route } from 'react-router'
 
-
 class App extends Component {
-
+  
   render() {
-
+    
     return (
       <div className="App">
         <Route exact path="/" component={Main} />
@@ -19,5 +18,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;

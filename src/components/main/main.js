@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions';
 import './main.css'
 
+
 function Main({ date, volume, glasses, emptyVolume, fullVolume, empty, full, actions }) {
 
     return <div className="main">
