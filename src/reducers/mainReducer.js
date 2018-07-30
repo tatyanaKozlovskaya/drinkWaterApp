@@ -1,5 +1,7 @@
 
 import { getDateForData } from '../components/utils/utils.js';
+import { GLASSES_UPDATE,NEW_NORM_AND_VOLUME } from '../constants.js'
+
 const todayDate = Date.now();
 
 const getGlasses = (norm, empty) => {
@@ -68,7 +70,7 @@ export default function mainReducer(state = getInitialState(), action) {
       }
     }
 
-    case 'NEW_NORM_AND_VOLUME': {
+    case NEW_NORM_AND_VOLUME: {
 
       const norm = +payload.norm || state.norm;
       const volume = +payload.volume || state.volume;
@@ -98,7 +100,7 @@ export default function mainReducer(state = getInitialState(), action) {
       }
     }
 
-    case 'GLASSES_UPDATE': {
+    case GLASSES_UPDATE: {
 
       const { glasses, drinked, emptyVolume, fullVolume, empty, full } = payload
       const date = getDateForData(state.date);

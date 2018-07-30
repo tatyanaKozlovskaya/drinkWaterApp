@@ -1,42 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './settings.css';
-
+import { bindActionCreators } from 'redux';
+import * as Actions from '../../actions/settingsActions.js';
 class Settings extends Component {
-
+    
     clickHandler = (e) => {
-        if (e.target.className.indexOf('settings-icon') !== -1) {
-            const state = !this.props.state.settings;
-            this.props.toggleActive(state);
-        } else if (e.target.className.indexOf('save') !== -1) {
+        const { setNewNormAndVolume, toggleActive } = this.props.actions;
+        console.log(this.props.actions)
 
-            const newVolume = this.refs.volume.value || this.props.state.main.volume;
-            const newNorm = this.refs.norm.value|| this.props.state.main.norm;
-            this.props.setNewNormAndVolume({
+        if (e.target.className.indexOf('settings-icon') !== -1) {
+            const state = !this.props.active;
+            toggleActive(state);
+
+        } else if (e.target.className.indexOf('save') !== -1) {
+            const newVolume = this.refs.volume.value || this.props.volume;
+            const newNorm = this.refs.norm.value || this.props.norm;
+            setNewNormAndVolume({
                 volume: newVolume,
                 norm: newNorm
             });
-            const state = !this.props.state.settings;
-            this.props.toggleActive(state);
+            const state = !this.props.active;
+            toggleActive(state);
         }
     }
 
     onChangeHandler = (e) => {
         let obj = e.target;
-        var value= +obj.value.replace(/\D/g,'')||0;
-       
+        var value = +obj.value.replace(/\D/g, '') || 0;
+
         var min = +obj.getAttribute('min');
-       
+
         var max = +obj.getAttribute('max');
-       
+
         obj.value = Math.min(max, Math.max(min, value));
-       
+
     }
 
     render() {
-        const { norm, volume } = this.props.state.main;
-        const active = this.props.state.settings;
 
+
+        const { norm, volume, active } = this.props
         return <div className="settings">
             <div className={`settings-block ${(active ? 'settings-block_active' : '')}`}>
                 <div className='norm'>Количество стакнов(шт), max - 20:
@@ -52,22 +56,20 @@ class Settings extends Component {
     }
 }
 
-export default connect(
-    state => ({
-        state: state
-    }),
-    dispatch => ({
-        toggleActive: (state) => {
-            dispatch({
-                type: 'NEW_SETTINGS_STATE',
-                payload: state
-            })
-        },
-        setNewNormAndVolume: (obj) => {
-            dispatch({
-                type: 'NEW_NORM_AND_VOLUME',
-                payload: obj
-            })
-        }
-    })
-)(Settings);
+function mapStateToProps(state) {
+    const { volume, norm } = state.main
+    const active = state.settings
+    return {
+        volume: volume,
+        norm: norm,
+        active: active
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(Actions, dispatch),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

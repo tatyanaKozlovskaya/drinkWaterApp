@@ -16,16 +16,16 @@ const initState = () => {
     const nextMonthCellsArr = getNextMonthCellsArr(month, year, prevMonthCellsArr, currMonthCellsArr);
 
     return {
-        day: day,
-        weekDay: weekDay,
-        date: date,
-        realMonth: month,
-        realYear: year,
-        month: month,
-        year: year,
-        prevMonthCellsArr: prevMonthCellsArr,
-        currMonthCellsArr: currMonthCellsArr,
-        nextMonthCellsArr: nextMonthCellsArr
+        day,
+        weekDay,
+        date,
+        month,
+        year,
+        month,
+        year,
+        prevMonthCellsArr,
+        currMonthCellsArr,
+        nextMonthCellsArr
     }
 
 }

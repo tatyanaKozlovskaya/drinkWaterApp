@@ -1,7 +1,8 @@
 import { setGlassArr } from './mainActions.js'
-import { toggleActive } from './settingsActions.js'
+import { toggleActive, setNewNormAndVolume } from './settingsActions.js'
 
 export {
   setGlassArr,
-  toggleActive
+  toggleActive,
+  setNewNormAndVolume
 }

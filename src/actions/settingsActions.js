@@ -4,9 +4,17 @@ import {
 } from '../constants.js';
 
 export function toggleActive(settingsState) {
-    const newSettingsState = !settingsState;
     return {
         type: NEW_SETTINGS_STATE,
-        payload: newSettingsState
+        payload: settingsState
     }
 }
+
+export function setNewNormAndVolume(obj) {
+
+    return {
+        type: NEW_NORM_AND_VOLUME,
+        payload: obj
+    }
+}
+

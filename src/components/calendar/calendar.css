@@ -86,7 +86,7 @@
 
 .calendar-table-cell--today{
     /* background-color: rgba(0, 195, 255, 0.24);  */
-    border: dashed rgba(0, 195, 255, 0.24) 1px;
+    background:rgba(0, 195, 255, 0.15);
 }
 
 .calendar-btn{
