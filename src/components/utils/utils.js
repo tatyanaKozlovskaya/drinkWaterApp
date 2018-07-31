@@ -9,7 +9,6 @@ const getDate = (miliseconds) => {
 }
 
 const getDateForData = (miliseconds) => {
-    console.log(date)
     if (!miliseconds) return
     const date = new Date(miliseconds);
     const day = date.getDate();
@@ -18,4 +17,11 @@ const getDateForData = (miliseconds) => {
     return day + '-' + month + '-' + year;
 }
 
-export { getDate, getDateForData }
+const getDateFromDate = (date) => {
+    const dateArr = date.split('-');
+    const newDate = dateArr[0] + ' ' + monthNames[dateArr[1] - 1] + ' ' + dateArr[2];
+    return newDate
+
+}
+
+export { getDate, getDateForData, getDateFromDate }

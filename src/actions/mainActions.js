@@ -17,8 +17,6 @@ export function setGlassArr(e, glasses, volume) {
     const emptyVolume = empty * volume;
     const fullVolume = full * volume;
 
-    console.log(empty, full, emptyVolume, fullVolume)
-
     return {
         type: GLASSES_UPDATE,
         payload: {
